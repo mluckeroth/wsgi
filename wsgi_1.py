@@ -21,11 +21,11 @@ def application(environ, start_response):
 
     response_body = body.format(
         software=environ.get('SERVER_SOFTWARE', default),
-        path="aaaa",
-        month="bbbb",
-        date="cccc",
-        year="dddd",
-        client_ip="eeee"
+        path=environ.get('PATH_INFO', default),
+        month="{:%B}".format(datetime.datetime.now()),
+        date="{:%d}".format(datetime.datetime.now()),
+        year="{:%Y}".format(datetime.datetime.now()),
+        client_ip=environ.get('REMOTE_ADDR', default)
     )
     status = '200 OK'
 
